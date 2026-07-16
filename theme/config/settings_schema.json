@@ -3,9 +3,7 @@
     "name": "theme_info",
     "theme_name": "Kesser",
     "theme_version": "1.0.0",
-    "theme_author": "Kesser",
-    "theme_documentation_url": "",
-    "theme_support_url": ""
+    "theme_author": "Kesser"
   },
   {
     "name": "Cores",
@@ -139,7 +137,7 @@
         "type": "range",
         "id": "radius_input",
         "min": 0,
-        "max": 48,
+        "max": 100,
         "step": 2,
         "unit": "px",
         "label": "Campos de formulário",
