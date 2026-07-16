@@ -3,7 +3,9 @@
     "name": "theme_info",
     "theme_name": "Kesser",
     "theme_version": "1.0.0",
-    "theme_author": "Kesser"
+    "theme_author": "Kesser",
+    "theme_documentation_url": "https://kesserstore.com.br",
+    "theme_support_email": "contato@kesser.com.br"
   },
   {
     "name": "Cores",
