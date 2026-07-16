@@ -10,7 +10,7 @@
       {%- form 'customer', id: 'NewsletterForm', class: 'newsletter-form' -%}
         <input type="hidden" name="contact[tags]" value="newsletter">
         <input type="email" name="contact[email]" placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}" required aria-label="{{ 'general.newsletter_form.email_placeholder' | t }}">
-        <button type="submit" class="button">{{ 'general.newsletter_form.submit' | t }}</button>
+        <button type="submit" class="button button--solid">{{ 'general.newsletter_form.submit' | t }}</button>
       {%- endform -%}
       {%- if form.posted_successfully? -%}
         <p style="margin-top:12px;">{{ 'general.newsletter_form.success' | t }}</p>

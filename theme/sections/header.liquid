@@ -4,6 +4,14 @@
       {%- render 'icon-menu' -%}
     </button>
 
+    <nav class="site-nav site-nav--left" aria-label="{{ 'sections.header.menu' | t }}">
+      <ul style="display:contents;">
+        {%- for link in section.settings.menu_left.links -%}
+          <li><a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
     <a href="{{ routes.root_url }}" class="site-header__logo">
       {%- if settings.logo != blank -%}
         <img
@@ -17,24 +25,29 @@
       {%- endif -%}
     </a>
 
-    <nav aria-label="{{ 'sections.header.menu' | t }}">
-      <ul class="site-nav">
-        {%- for link in section.settings.menu.links -%}
+    <nav class="site-nav site-nav--right" aria-label="{{ 'sections.header.menu' | t }}">
+      <ul style="display:contents;">
+        {%- for link in section.settings.menu_right.links -%}
           <li><a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a></li>
         {%- endfor -%}
+        <li><a href="{{ routes.search_url }}">{{ 'general.search.search' | t }}</a></li>
+        <li><a href="{{ routes.account_url }}">{{ 'sections.header.account' | t }}</a></li>
+        <li>
+          <button type="button" data-cart-open>
+            {{ 'sections.header.cart' | t }}
+            (<span data-cart-count-bubble>{{ cart.item_count }}</span>)
+          </button>
+        </li>
       </ul>
     </nav>
 
-    <div class="site-header__icons">
+    <div class="site-header__mobile-icons">
       <a href="{{ routes.search_url }}" class="header-icon-btn" aria-label="{{ 'general.search.search' | t }}">
         {%- render 'icon-search' -%}
       </a>
-      <a href="{{ routes.account_url }}" class="header-icon-btn" aria-label="{{ 'sections.header.account' | t }}">
-        {%- render 'icon-account' -%}
-      </a>
       <button type="button" class="header-icon-btn" data-cart-open aria-label="{{ 'sections.header.cart' | t }}">
         {%- render 'icon-cart' -%}
-        <span class="cart-count-bubble" data-cart-count-bubble {% if cart.item_count == 0 %}hidden{% endif %}>{{ cart.item_count }}</span>
+        <span class="cart-count-bubble" data-cart-count-bubble-mobile {% if cart.item_count == 0 %}hidden{% endif %}>{{ cart.item_count }}</span>
       </button>
     </div>
   </div>
@@ -47,9 +60,13 @@
       {%- render 'icon-close' -%}
     </button>
     <ul class="menu-drawer__list">
-      {%- for link in section.settings.menu.links -%}
+      {%- for link in section.settings.menu_left.links -%}
         <li><a href="{{ link.url }}" data-menu-close>{{ link.title }}</a></li>
       {%- endfor -%}
+      {%- for link in section.settings.menu_right.links -%}
+        <li><a href="{{ link.url }}" data-menu-close>{{ link.title }}</a></li>
+      {%- endfor -%}
+      <li><a href="{{ routes.account_url }}" data-menu-close>{{ 'sections.header.account' | t }}</a></li>
     </ul>
   </div>
 </div>
@@ -60,9 +77,14 @@
   "settings": [
     {
       "type": "link_list",
-      "id": "menu",
-      "label": "Menu",
+      "id": "menu_left",
+      "label": "Menu (esquerda)",
       "default": "main-menu"
+    },
+    {
+      "type": "link_list",
+      "id": "menu_right",
+      "label": "Menu (direita)"
     }
   ]
 }

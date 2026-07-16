@@ -1,11 +1,22 @@
 <footer class="site-footer">
+  <p class="footer-wordmark">{{ settings.logo_wordmark | default: shop.name }}</p>
   <div class="page-width">
     <div class="footer-grid">
       <div class="footer-brand">
-        <p class="footer-brand__logo">{{ settings.logo_wordmark | default: shop.name }}</p>
+        <h3>{{ 'sections.footer.newsletter_heading' | t }}</h3>
         {%- if section.settings.brand_text != blank -%}
           <p>{{ section.settings.brand_text }}</p>
         {%- endif -%}
+        {%- form 'customer', id: 'FooterNewsletterForm' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="footer-newsletter-pill">
+            <input type="email" name="contact[email]" placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}" required aria-label="{{ 'general.newsletter_form.email_placeholder' | t }}">
+            <button type="submit">{{ 'general.newsletter_form.submit' | t }}</button>
+          </div>
+          {%- if form.posted_successfully? -%}
+            <p style="font-size:12px;margin-top:8px;">{{ 'general.newsletter_form.success' | t }}</p>
+          {%- endif -%}
+        {%- endform -%}
         <div class="footer-social">
           {%- if settings.social_instagram_link != blank -%}
             <a href="{{ settings.social_instagram_link }}" aria-label="Instagram">{%- render 'icon-instagram' -%}</a>
@@ -21,7 +32,7 @@
 
       {%- for block in section.blocks -%}
         {%- if block.type == 'link_list' -%}
-          <div class="footer-col">
+          <div class="footer-col" {{ block.shopify_attributes }}>
             <h3>{{ block.settings.title }}</h3>
             <ul>
               {%- for link in block.settings.menu.links -%}
@@ -31,25 +42,11 @@
           </div>
         {%- endif -%}
       {%- endfor -%}
-
-      <div class="footer-col">
-        <h3>{{ 'sections.footer.newsletter_heading' | t }}</h3>
-        {%- form 'customer', id: 'FooterNewsletterForm', class: 'newsletter-form-mini' -%}
-          <input type="hidden" name="contact[tags]" value="newsletter">
-          <div class="field" style="display:flex;gap:8px;">
-            <input type="email" name="contact[email]" placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}" required>
-            <button type="submit" class="button button--small">{{ 'general.newsletter_form.submit' | t }}</button>
-          </div>
-          {%- if form.posted_successfully? -%}
-            <p style="font-size:12px;">{{ 'general.newsletter_form.success' | t }}</p>
-          {%- endif -%}
-        {%- endform -%}
-      </div>
     </div>
 
     <div class="footer-bottom">
       <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
-      <span>CNPJ &middot; {{ shop.address.country }}</span>
+      <span>{{ shop.address.country }} &middot; {{ cart.currency.iso_code }}</span>
     </div>
   </div>
 </footer>
@@ -61,8 +58,8 @@
     {
       "type": "textarea",
       "id": "brand_text",
-      "label": "Texto sobre a marca",
-      "default": "Skincare All In One para simplificar sua rotina de cuidados com a pele."
+      "label": "Texto do newsletter",
+      "default": "Novidades, lançamentos e ofertas exclusivas direto no seu e-mail."
     }
   ],
   "blocks": [
@@ -87,6 +84,7 @@
   ],
   "default": {
     "blocks": [
+      { "type": "link_list", "settings": { "title": "Navegar" } },
       { "type": "link_list", "settings": { "title": "Institucional" } },
       { "type": "link_list", "settings": { "title": "Ajuda" } }
     ]

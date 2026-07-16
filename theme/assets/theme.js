@@ -52,10 +52,11 @@
     var root = qs('#CartDrawerContent');
     if (!root) return;
 
-    var bubble = qs('[data-cart-count-bubble]');
-    if (bubble) {
-      bubble.textContent = cart.item_count;
-      bubble.hidden = cart.item_count === 0;
+    qsa('[data-cart-count-bubble]').forEach(function (el) { el.textContent = cart.item_count; });
+    var mobileBubble = qs('[data-cart-count-bubble-mobile]');
+    if (mobileBubble) {
+      mobileBubble.textContent = cart.item_count;
+      mobileBubble.hidden = cart.item_count === 0;
     }
 
     if (cart.item_count === 0) {

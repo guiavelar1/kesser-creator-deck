@@ -1,0 +1,67 @@
+<div class="lifestyle-banner">
+  <div class="lifestyle-banner__media">
+    {%- if section.settings.image -%}
+      <img
+        src="{{ section.settings.image | image_url: width: 1800 }}"
+        alt="{{ section.settings.image.alt | default: section.settings.heading | escape }}"
+        loading="lazy"
+        width="1800"
+        height="{{ 1800 | divided_by: section.settings.image.aspect_ratio }}"
+      >
+    {%- else -%}
+      {{ 'lifestyle-2' | placeholder_svg_tag }}
+    {%- endif -%}
+    <div class="lifestyle-banner__content">
+      {%- if section.settings.heading != blank -%}
+        <h2 class="lifestyle-banner__heading">{{ section.settings.heading }}</h2>
+      {%- endif -%}
+      {%- if section.settings.text != blank -%}
+        <p class="lifestyle-banner__text">{{ section.settings.text }}</p>
+      {%- endif -%}
+      {%- if section.settings.button_label != blank -%}
+        <a href="{{ section.settings.button_link }}" class="button button--on-dark" style="margin-top:8px;">{{ section.settings.button_label }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Banner full-bleed",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagem"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "um em cada bolsa, feito para durar"
+    },
+    {
+      "type": "textarea",
+      "id": "text",
+      "label": "Texto",
+      "default": "Na Kesser, nossa filosofia é simplificar sua rotina. Fórmulas multifuncionais que você usa todos os dias e sempre volta a comprar."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto do botão",
+      "default": "Comprar Kesser"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Link do botão"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner full-bleed"
+    }
+  ]
+}
+{% endschema %}

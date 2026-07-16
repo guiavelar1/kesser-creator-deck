@@ -14,7 +14,7 @@
     "page_width": 1400,
     "spacing_sections": 64,
     "radius_button": 100,
-    "radius_card": 24,
+    "radius_card": 6,
     "radius_input": 100,
     "logo": "",
     "logo_width": 130,
@@ -40,7 +40,7 @@
       "page_width": 1400,
       "spacing_sections": 64,
       "radius_button": 100,
-      "radius_card": 24,
+      "radius_card": 6,
       "radius_input": 100
     }
   }

@@ -1,0 +1,98 @@
+<div class="section">
+  <div class="page-width">
+    <div class="featured-tiles">
+      {%- for block in section.blocks -%}
+        {%- assign product = block.settings.product -%}
+        <div class="featured-tile" {{ block.shopify_attributes }}>
+          {%- if block.settings.badge != blank -%}
+            <span class="featured-tile__badge">{{ block.settings.badge }}</span>
+          {%- endif -%}
+
+          {%- if product != blank -%}
+            <a href="{{ product.url }}">
+              <p class="featured-tile__name">{{ block.settings.display_name | default: product.title }}</p>
+            </a>
+            <a href="{{ product.url }}" class="featured-tile__media">
+              {%- if product.featured_image -%}
+                <img src="{{ product.featured_image | image_url: width: 500 }}" alt="{{ product.title | escape }}" loading="lazy">
+              {%- else -%}
+                {{ 'product-1' | placeholder_svg_tag }}
+              {%- endif -%}
+            </a>
+            {%- if block.settings.show_rating -%}
+              <div class="featured-tile__stars" aria-hidden="true">
+                ★★★★★ <span>({{ block.settings.rating_count | default: 0 }})</span>
+              </div>
+            {%- endif -%}
+            <p class="featured-tile__title">{{ product.title }}</p>
+            {%- if block.settings.subtitle != blank -%}
+              <p class="featured-tile__subtitle">{{ block.settings.subtitle }}</p>
+            {%- endif -%}
+            <p class="featured-tile__price">{{ product.price | money }}</p>
+          {%- else -%}
+            <p class="featured-tile__name">produto</p>
+            <div class="featured-tile__media">{{ 'product-1' | placeholder_svg_tag }}</div>
+            <p class="featured-tile__title">Selecione um produto</p>
+          {%- endif -%}
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Produtos em destaque (tiles)",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Produto",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Produto"
+        },
+        {
+          "type": "text",
+          "id": "display_name",
+          "label": "Nome estilizado (opcional)",
+          "info": "Se vazio, usa o título do produto"
+        },
+        {
+          "type": "text",
+          "id": "subtitle",
+          "label": "Subtítulo curto"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Selo (ex: NOVO)"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_rating",
+          "label": "Mostrar avaliação",
+          "default": true
+        },
+        {
+          "type": "number",
+          "id": "rating_count",
+          "label": "Quantidade de avaliações"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Produtos em destaque (tiles)",
+      "blocks": [
+        { "type": "tile" },
+        { "type": "tile" },
+        { "type": "tile" }
+      ]
+    }
+  ]
+}
+{% endschema %}
