@@ -1,0 +1,17 @@
+{%- comment -%}
+  Renders a product price block.
+  Accepts: product (object)
+{%- endcomment -%}
+{%- liquid
+  assign target = product.selected_or_first_available_variant | default: product
+  assign compare_at_price = target.compare_at_price
+  assign price = target.price
+-%}
+<span class="card-product__price">
+  {%- if compare_at_price > price -%}
+    <s>{{ compare_at_price | money }}</s>
+    <span class="price--sale">{{ price | money }}</span>
+  {%- else -%}
+    <span>{{ price | money }}</span>
+  {%- endif -%}
+</span>

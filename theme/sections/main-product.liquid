@@ -1,0 +1,145 @@
+<div class="page-width" data-product-root>
+  <script type="application/json" data-product-json>{{ product | json }}</script>
+  <div class="product">
+    <div data-product-gallery>
+      <div class="product-gallery__main">
+        <img
+          data-product-main-image
+          src="{{ product.featured_image | image_url: width: 900 }}"
+          alt="{{ product.featured_image.alt | default: product.title | escape }}"
+          width="900"
+          height="{{ 900 | divided_by: product.featured_image.aspect_ratio | default: 900 }}"
+        >
+      </div>
+      {%- if product.images.size > 1 -%}
+        <div class="product-gallery__thumbs">
+          {%- for image in product.images -%}
+            <button
+              type="button"
+              data-gallery-thumb
+              data-full-src="{{ image | image_url: width: 900 }}"
+              aria-current="{% if forloop.first %}true{% else %}false{% endif %}"
+            >
+              <img src="{{ image | image_url: width: 160 }}" alt="{{ image.alt | escape }}" loading="lazy">
+            </button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+
+    <div class="product-info">
+      <h1>{{ product.title }}</h1>
+
+      <div class="product-info__price" data-product-price>
+        {%- if product.compare_at_price > product.price -%}
+          <s>{{ product.compare_at_price | money }}</s>
+        {%- endif -%}
+        {{ product.price | money }}
+      </div>
+
+      {%- if product.description != blank -%}
+        <div class="product-info__description">{{ product.description }}</div>
+      {%- endif -%}
+
+      {%- form 'product', product, data-product-form: '' -%}
+        <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+        {%- unless product.has_only_default_variant -%}
+          {%- for option in product.options_with_values -%}
+            <fieldset class="product-form__option">
+              <legend>{{ option.name }}</legend>
+              <div class="swatch-group">
+                {%- for value in option.values -%}
+                  <label class="swatch">
+                    <input
+                      type="radio"
+                      name="option-{{ option.position | minus: 1 }}"
+                      value="{{ value | escape }}"
+                      {% if option.selected_value == value %}checked{% endif %}
+                    >
+                    {{ value }}
+                  </label>
+                {%- endfor -%}
+              </div>
+            </fieldset>
+          {%- endfor -%}
+        {%- endunless -%}
+
+        <div class="quantity-selector">
+          <button type="button" data-quantity-change="-1" aria-label="Diminuir">-</button>
+          <input type="number" name="quantity" value="1" min="1" aria-label="{{ 'products.product.quantity' | t }}">
+          <button type="button" data-quantity-change="1" aria-label="Aumentar">+</button>
+        </div>
+
+        <div class="product-form__buttons">
+          <button type="submit" class="button button--full" {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+            {%- if product.selected_or_first_available_variant.available -%}
+              {{ 'products.product.add_to_cart' | t }}
+            {%- else -%}
+              {{ 'products.product.sold_out' | t }}
+            {%- endif -%}
+          </button>
+        </div>
+      {%- endform -%}
+
+      {%- if section.settings.show_details_accordion -%}
+        <div class="product-accordion">
+          {%- if product.metafields.custom.how_to_use != blank -%}
+            <details>
+              <summary>{{ section.settings.how_to_use_label }}</summary>
+              <div class="accordion-content">{{ product.metafields.custom.how_to_use }}</div>
+            </details>
+          {%- endif -%}
+          {%- if product.metafields.custom.ingredients != blank -%}
+            <details>
+              <summary>{{ section.settings.ingredients_label }}</summary>
+              <div class="accordion-content">{{ product.metafields.custom.ingredients }}</div>
+            </details>
+          {%- endif -%}
+          <details>
+            <summary>{{ section.settings.shipping_label }}</summary>
+            <div class="accordion-content">{{ section.settings.shipping_text }}</div>
+          </details>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Página do produto",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_details_accordion",
+      "label": "Mostrar acordeão de detalhes",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "how_to_use_label",
+      "label": "Título: Como usar",
+      "default": "Como usar"
+    },
+    {
+      "type": "text",
+      "id": "ingredients_label",
+      "label": "Título: Ingredientes",
+      "default": "Ingredientes"
+    },
+    {
+      "type": "text",
+      "id": "shipping_label",
+      "label": "Título: Envio",
+      "default": "Envio e devolução"
+    },
+    {
+      "type": "richtext",
+      "id": "shipping_text",
+      "label": "Texto: Envio",
+      "default": "<p>Enviamos para todo o Brasil. Prazos e valores calculados no checkout.</p>"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,95 @@
+<footer class="site-footer">
+  <div class="page-width">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <p class="footer-brand__logo">{{ settings.logo_wordmark | default: shop.name }}</p>
+        {%- if section.settings.brand_text != blank -%}
+          <p>{{ section.settings.brand_text }}</p>
+        {%- endif -%}
+        <div class="footer-social">
+          {%- if settings.social_instagram_link != blank -%}
+            <a href="{{ settings.social_instagram_link }}" aria-label="Instagram">{%- render 'icon-instagram' -%}</a>
+          {%- endif -%}
+          {%- if settings.social_tiktok_link != blank -%}
+            <a href="{{ settings.social_tiktok_link }}" aria-label="TikTok">{%- render 'icon-tiktok' -%}</a>
+          {%- endif -%}
+          {%- if settings.social_facebook_link != blank -%}
+            <a href="{{ settings.social_facebook_link }}" aria-label="Facebook">{%- render 'icon-facebook' -%}</a>
+          {%- endif -%}
+        </div>
+      </div>
+
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'link_list' -%}
+          <div class="footer-col">
+            <h3>{{ block.settings.title }}</h3>
+            <ul>
+              {%- for link in block.settings.menu.links -%}
+                <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+
+      <div class="footer-col">
+        <h3>{{ 'sections.footer.newsletter_heading' | t }}</h3>
+        {%- form 'customer', id: 'FooterNewsletterForm', class: 'newsletter-form-mini' -%}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="field" style="display:flex;gap:8px;">
+            <input type="email" name="contact[email]" placeholder="{{ 'general.newsletter_form.email_placeholder' | t }}" required>
+            <button type="submit" class="button button--small">{{ 'general.newsletter_form.submit' | t }}</button>
+          </div>
+          {%- if form.posted_successfully? -%}
+            <p style="font-size:12px;">{{ 'general.newsletter_form.success' | t }}</p>
+          {%- endif -%}
+        {%- endform -%}
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}</span>
+      <span>CNPJ &middot; {{ shop.address.country }}</span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Rodapé",
+  "settings": [
+    {
+      "type": "textarea",
+      "id": "brand_text",
+      "label": "Texto sobre a marca",
+      "default": "Skincare All In One para simplificar sua rotina de cuidados com a pele."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "link_list",
+      "name": "Lista de links",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Institucional"
+        },
+        {
+          "type": "link_list",
+          "id": "menu",
+          "label": "Menu",
+          "default": "footer"
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "link_list", "settings": { "title": "Institucional" } },
+      { "type": "link_list", "settings": { "title": "Ajuda" } }
+    ]
+  }
+}
+{% endschema %}

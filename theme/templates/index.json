@@ -1,0 +1,97 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "alignment": "start",
+        "eyebrow": "Skincare all in one",
+        "heading": "Sua rotina de skincare, simplificada",
+        "text": "Fórmulas vegan e cruelty free feitas para pele radiante, todos os dias.",
+        "button_label": "Comprar agora",
+        "button_link": "/collections/all"
+      }
+    },
+    "benefits": {
+      "type": "benefits",
+      "blocks": {
+        "b1": { "type": "item", "settings": { "icon": "leaf", "title": "Vegano", "text": "Fórmulas 100% vegan e cruelty free." } },
+        "b2": { "type": "item", "settings": { "icon": "drop", "title": "All in One", "text": "Praticidade em um único produto multifuncional." } },
+        "b3": { "type": "item", "settings": { "icon": "shield", "title": "Testado dermatologicamente", "text": "Segurança e eficácia comprovadas." } },
+        "b4": { "type": "item", "settings": { "icon": "heart", "title": "Feito no Brasil", "text": "Desenvolvido pensando na sua pele." } }
+      },
+      "block_order": ["b1", "b2", "b3", "b4"],
+      "settings": {
+        "heading": "Por que Kesser",
+        "background": "alt"
+      }
+    },
+    "featured_collection": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "Best sellers",
+        "heading": "Mais vendidos",
+        "text": "",
+        "collection": "frontpage",
+        "products_to_show": 8,
+        "columns": "4",
+        "show_view_all": true,
+        "background": "default"
+      }
+    },
+    "image_with_text": {
+      "type": "image-with-text",
+      "settings": {
+        "layout": "default",
+        "eyebrow": "All In One",
+        "heading": "Um bálsamo, resultados múltiplos",
+        "text": "<p>Hidrata, protege e prepara a pele para maquiagem em um único passo. Menos produtos na nécessaire, mais tempo para você.</p>",
+        "button_label": "Conhecer o All In One",
+        "button_link": "/products/hidratante-facial-all-in-one",
+        "background": "default"
+      }
+    },
+    "featured_collection_2": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "O Segredo da Pele Radiante",
+        "heading": "Kits e combos",
+        "text": "Monte sua rotina completa com desconto.",
+        "collection": "all-protect",
+        "products_to_show": 4,
+        "columns": "4",
+        "show_view_all": true,
+        "background": "alt"
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "t1": { "type": "testimonial", "settings": { "quote": "Minha pele nunca esteve tão hidratada. Virou o único produto da minha rotina.", "author": "Ana P." } },
+        "t2": { "type": "testimonial", "settings": { "quote": "Prático, cheiro leve e resultado rápido. Recomendo demais.", "author": "Carla M." } },
+        "t3": { "type": "testimonial", "settings": { "quote": "Substituiu vários produtos da minha nécessaire. Amei!", "author": "Bianca S." } }
+      },
+      "block_order": ["t1", "t2", "t3"],
+      "settings": {
+        "eyebrow": "Quem usa, ama",
+        "heading": "O que dizem sobre a Kesser",
+        "background": "default"
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Entre para o clube Kesser",
+        "text": "Novidades, lançamentos e ofertas exclusivas direto no seu e-mail."
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "benefits",
+    "featured_collection",
+    "image_with_text",
+    "featured_collection_2",
+    "testimonials",
+    "newsletter"
+  ]
+}

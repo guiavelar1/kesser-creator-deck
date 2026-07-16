@@ -1,0 +1,69 @@
+<header class="site-header">
+  <div class="page-width site-header__inner">
+    <button type="button" class="menu-drawer-toggle" data-menu-open aria-label="{{ 'sections.header.menu' | t }}">
+      {%- render 'icon-menu' -%}
+    </button>
+
+    <a href="{{ routes.root_url }}" class="site-header__logo">
+      {%- if settings.logo != blank -%}
+        <img
+          src="{{ settings.logo | image_url: width: settings.logo_width | times: 2 }}"
+          alt="{{ shop.name }}"
+          width="{{ settings.logo_width }}"
+          style="width: {{ settings.logo_width }}px;"
+        >
+      {%- else -%}
+        {{ settings.logo_wordmark | default: shop.name }}
+      {%- endif -%}
+    </a>
+
+    <nav aria-label="{{ 'sections.header.menu' | t }}">
+      <ul class="site-nav">
+        {%- for link in section.settings.menu.links -%}
+          <li><a href="{{ link.url }}"{% if link.active %} aria-current="page"{% endif %}>{{ link.title }}</a></li>
+        {%- endfor -%}
+      </ul>
+    </nav>
+
+    <div class="site-header__icons">
+      <a href="{{ routes.search_url }}" class="header-icon-btn" aria-label="{{ 'general.search.search' | t }}">
+        {%- render 'icon-search' -%}
+      </a>
+      <a href="{{ routes.account_url }}" class="header-icon-btn" aria-label="{{ 'sections.header.account' | t }}">
+        {%- render 'icon-account' -%}
+      </a>
+      <button type="button" class="header-icon-btn" data-cart-open aria-label="{{ 'sections.header.cart' | t }}">
+        {%- render 'icon-cart' -%}
+        <span class="cart-count-bubble" data-cart-count-bubble {% if cart.item_count == 0 %}hidden{% endif %}>{{ cart.item_count }}</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="MenuDrawer" class="menu-drawer">
+  <div class="menu-drawer__overlay" data-menu-close></div>
+  <div class="menu-drawer__panel">
+    <button type="button" class="header-icon-btn" data-menu-close aria-label="{{ 'general.close' | t }}">
+      {%- render 'icon-close' -%}
+    </button>
+    <ul class="menu-drawer__list">
+      {%- for link in section.settings.menu.links -%}
+        <li><a href="{{ link.url }}" data-menu-close>{{ link.title }}</a></li>
+      {%- endfor -%}
+    </ul>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Cabeçalho",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

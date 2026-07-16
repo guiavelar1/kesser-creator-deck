@@ -1,0 +1,28 @@
+{
+  "sections": {
+    "main": {
+      "type": "main-product",
+      "settings": {
+        "show_details_accordion": true,
+        "how_to_use_label": "Como usar",
+        "ingredients_label": "Ingredientes",
+        "shipping_label": "Envio e devolução",
+        "shipping_text": "<p>Enviamos para todo o Brasil. Prazos e valores calculados no checkout.</p>"
+      }
+    },
+    "related": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Você também pode gostar",
+        "text": "",
+        "collection": "frontpage",
+        "products_to_show": 4,
+        "columns": "4",
+        "show_view_all": false,
+        "background": "alt"
+      }
+    }
+  },
+  "order": ["main", "related"]
+}

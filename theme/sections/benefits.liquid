@@ -1,0 +1,94 @@
+<div class="section{% if section.settings.background == 'alt' %} section--alt{% endif %}">
+  <div class="page-width">
+    {%- if section.settings.heading != blank -%}
+      <div class="section-header">
+        <h2>{{ section.settings.heading }}</h2>
+      </div>
+    {%- endif -%}
+    <div class="benefits-grid">
+      {%- for block in section.blocks -%}
+        <div class="benefit-item" {{ block.shopify_attributes }}>
+          <div class="benefit-item__icon">
+            {%- case block.settings.icon -%}
+              {%- when 'leaf' -%}{%- render 'icon-leaf' -%}
+              {%- when 'drop' -%}{%- render 'icon-drop' -%}
+              {%- when 'heart' -%}{%- render 'icon-heart' -%}
+              {%- else -%}{%- render 'icon-shield' -%}
+            {%- endcase -%}
+          </div>
+          <h3>{{ block.settings.title }}</h3>
+          <p>{{ block.settings.text }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Benefícios",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Por que Kesser"
+    },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Fundo",
+      "options": [
+        { "value": "default", "label": "Padrão" },
+        { "value": "alt", "label": "Alternativo" }
+      ],
+      "default": "alt"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "item",
+      "name": "Item",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Ícone",
+          "options": [
+            { "value": "leaf", "label": "Folha" },
+            { "value": "drop", "label": "Gota" },
+            { "value": "heart", "label": "Coração" },
+            { "value": "shield", "label": "Escudo" }
+          ],
+          "default": "leaf"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Título",
+          "default": "Vegano"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Texto",
+          "default": "Fórmulas 100% vegan e cruelty free."
+        }
+      ]
+    }
+  ],
+  "default": {
+    "blocks": [
+      { "type": "item", "settings": { "icon": "leaf", "title": "Vegano", "text": "Fórmulas 100% vegan e cruelty free." } },
+      { "type": "item", "settings": { "icon": "drop", "title": "All in One", "text": "Praticidade em um único produto multifuncional." } },
+      { "type": "item", "settings": { "icon": "shield", "title": "Dermatologicamente testado", "text": "Segurança e eficácia comprovadas." } },
+      { "type": "item", "settings": { "icon": "heart", "title": "Feito no Brasil", "text": "Desenvolvido pensando na sua pele." } }
+    ]
+  },
+  "presets": [
+    {
+      "name": "Benefícios"
+    }
+  ]
+}
+{% endschema %}

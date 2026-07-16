@@ -1,0 +1,40 @@
+<div class="page-width" style="max-width:600px;padding:60px 0;">
+  <p><a href="{{ routes.account_url }}">&larr; {{ 'customer.account.return' | t }}</a></p>
+  <h1>{{ 'customer.account.view_addresses' | t }}</h1>
+
+  {%- for address in customer.addresses -%}
+    <div style="border:1px solid var(--color-border);border-radius:var(--radius-card);padding:20px;margin-bottom:16px;">
+      <p>{{ address | format_address }}</p>
+      {%- form 'customer_address', address -%}
+        <button type="submit" name="_method" value="delete" class="button button--small button--secondary" onclick="return confirm('Remover este endereço?');">Remover</button>
+      {%- endform -%}
+    </div>
+  {%- else -%}
+    <p>Nenhum endereço cadastrado.</p>
+  {%- endfor -%}
+
+  {%- form 'customer_address', customer.new_address -%}
+    <h2 style="font-size:16px;">Adicionar endereço</h2>
+    <div class="field">
+      <label for="AddressFirstName">{{ 'customer.register.first_name' | t }}</label>
+      <input type="text" id="AddressFirstName" name="address[first_name]">
+    </div>
+    <div class="field">
+      <label for="AddressLastName">{{ 'customer.register.last_name' | t }}</label>
+      <input type="text" id="AddressLastName" name="address[last_name]">
+    </div>
+    <div class="field">
+      <label for="AddressAddress1">Endereço</label>
+      <input type="text" id="AddressAddress1" name="address[address1]">
+    </div>
+    <div class="field">
+      <label for="AddressCity">Cidade</label>
+      <input type="text" id="AddressCity" name="address[city]">
+    </div>
+    <div class="field">
+      <label for="AddressZip">CEP</label>
+      <input type="text" id="AddressZip" name="address[zip]">
+    </div>
+    <button type="submit" class="button button--full">Salvar endereço</button>
+  {%- endform -%}
+</div>

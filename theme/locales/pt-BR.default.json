@@ -1,0 +1,114 @@
+{
+  "general": {
+    "search": {
+      "search": "Buscar",
+      "placeholder": "Buscar produtos",
+      "no_results": "Nenhum resultado para \"{{ terms }}\"",
+      "results_count": {
+        "one": "{{ count }} resultado",
+        "other": "{{ count }} resultados"
+      }
+    },
+    "newsletter_form": {
+      "email_placeholder": "Seu e-mail",
+      "submit": "Cadastrar",
+      "success": "Obrigada por se cadastrar!"
+    },
+    "continue_shopping": "Continuar comprando",
+    "close": "Fechar",
+    "logout": "Sair"
+  },
+  "accessibility": {
+    "skip_to_text": "Pular para o conteúdo"
+  },
+  "cart": {
+    "title": "Sua sacola",
+    "empty": "Sua sacola está vazia",
+    "empty_link": "Ver produtos",
+    "subtotal": "Subtotal",
+    "checkout": "Finalizar compra",
+    "remove": "Remover",
+    "quantity": "Quantidade",
+    "view_cart": "Ver sacola",
+    "shipping_note": "Frete e impostos calculados no checkout",
+    "update": "Atualizar",
+    "item_added": "Adicionado à sacola"
+  },
+  "products": {
+    "product": {
+      "add_to_cart": "Adicionar à sacola",
+      "sold_out": "Esgotado",
+      "unavailable": "Indisponível",
+      "quantity": "Quantidade",
+      "description": "Descrição",
+      "sku": "SKU",
+      "view_details": "Ver detalhes",
+      "regular_price": "Preço normal",
+      "sale_price": "Preço promocional",
+      "from_price": "A partir de",
+      "choose_options": "Escolher opções"
+    }
+  },
+  "collections": {
+    "general": {
+      "no_matches": "Nenhum produto encontrado nesta coleção",
+      "items_count": {
+        "one": "{{ count }} produto",
+        "other": "{{ count }} produtos"
+      }
+    }
+  },
+  "sections": {
+    "header": {
+      "menu": "Menu",
+      "account": "Minha conta",
+      "cart": "Sacola"
+    },
+    "footer": {
+      "newsletter_heading": "Entre para o clube Kesser",
+      "newsletter_text": "Novidades, lançamentos e ofertas exclusivas direto no seu e-mail.",
+      "payment_methods": "Formas de pagamento"
+    },
+    "featured_collection": {
+      "view_all": "Ver todos"
+    }
+  },
+  "customer": {
+    "account": {
+      "title": "Minha conta",
+      "details": "Detalhes da conta",
+      "view_addresses": "Ver endereços",
+      "return": "Voltar aos detalhes da conta"
+    },
+    "orders": {
+      "title": "Histórico de pedidos",
+      "order_number": "Pedido",
+      "date": "Data",
+      "payment_status": "Pagamento",
+      "fulfillment_status": "Envio",
+      "total": "Total",
+      "none": "Você ainda não fez nenhum pedido."
+    },
+    "login": {
+      "title": "Entrar",
+      "email": "E-mail",
+      "password": "Senha",
+      "sign_in": "Entrar",
+      "forgot_password": "Esqueceu a senha?",
+      "create_account": "Criar conta"
+    },
+    "register": {
+      "title": "Criar conta",
+      "first_name": "Nome",
+      "last_name": "Sobrenome",
+      "email": "E-mail",
+      "password": "Senha",
+      "submit": "Criar conta"
+    }
+  },
+  "404": {
+    "title": "Página não encontrada",
+    "subtext": "Não encontramos a página que você procura.",
+    "link": "Voltar para a loja"
+  }
+}

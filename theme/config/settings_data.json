@@ -1,0 +1,47 @@
+{
+  "current": {
+    "color_background": "#FFFFFF",
+    "color_background_alt": "#F1F0ED",
+    "color_text": "#67635E",
+    "color_heading": "#161616",
+    "color_accent": "#9AA89B",
+    "color_accent_2": "#FF8A80",
+    "color_border": "#DCDBD6",
+    "color_button_background": "#161616",
+    "color_button_text": "#FFFFFF",
+    "type_header_font": "arimo_n7",
+    "type_body_font": "arimo_n4",
+    "page_width": 1400,
+    "spacing_sections": 64,
+    "radius_button": 100,
+    "radius_card": 24,
+    "radius_input": 100,
+    "logo": "",
+    "logo_width": 130,
+    "logo_wordmark": "kesser",
+    "social_instagram_link": "https://instagram.com/kesser",
+    "social_tiktok_link": "",
+    "social_facebook_link": "",
+    "favicon": ""
+  },
+  "presets": {
+    "Kesser - Padrão": {
+      "color_background": "#FFFFFF",
+      "color_background_alt": "#F1F0ED",
+      "color_text": "#67635E",
+      "color_heading": "#161616",
+      "color_accent": "#9AA89B",
+      "color_accent_2": "#FF8A80",
+      "color_border": "#DCDBD6",
+      "color_button_background": "#161616",
+      "color_button_text": "#FFFFFF",
+      "type_header_font": "arimo_n7",
+      "type_body_font": "arimo_n4",
+      "page_width": 1400,
+      "spacing_sections": 64,
+      "radius_button": 100,
+      "radius_card": 24,
+      "radius_input": 100
+    }
+  }
+}

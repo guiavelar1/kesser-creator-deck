@@ -1,0 +1,54 @@
+<div id="CartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-label="{{ 'cart.title' | t }}">
+  <div class="cart-drawer__overlay" data-cart-close></div>
+  <div class="cart-drawer__panel">
+    <div class="cart-drawer__header">
+      <h2 style="margin:0;font-size:18px;">{{ 'cart.title' | t }}</h2>
+      <button type="button" class="header-icon-btn" data-cart-close aria-label="{{ 'general.close' | t }}">
+        {%- render 'icon-close' -%}
+      </button>
+    </div>
+    <div id="CartDrawerContent" class="cart-drawer__items">
+      {%- if cart.item_count == 0 -%}
+        <div class="cart-drawer__empty">
+          <p>{{ 'cart.empty' | t }}</p>
+          <a href="/collections/all" class="button">{{ 'cart.empty_link' | t }}</a>
+        </div>
+      {%- else -%}
+        {%- for item in cart.items -%}
+          <div class="cart-line" data-line-key="{{ item.key }}">
+            <a href="{{ item.url }}" class="cart-line__image">
+              {%- if item.image -%}
+                <img src="{{ item.image | image_url: width: 160 }}" alt="{{ item.product.title | escape }}" loading="lazy">
+              {%- endif -%}
+            </a>
+            <div>
+              <a href="{{ item.url }}" class="cart-line__title">{{ item.product.title }}</a>
+              {%- unless item.variant.title == 'Default Title' -%}
+                <div class="cart-line__price">{{ item.variant.title }}</div>
+              {%- endunless -%}
+              <div class="cart-line__price">{{ item.final_price | money }}</div>
+              <div class="cart-line__qty">
+                <button type="button" class="qty-btn" data-cart-qty-decrease data-key="{{ item.key }}" data-qty="{{ item.quantity | minus: 1 }}" aria-label="Diminuir">-</button>
+                <span>{{ item.quantity }}</span>
+                <button type="button" class="qty-btn" data-cart-qty-increase data-key="{{ item.key }}" data-qty="{{ item.quantity | plus: 1 }}" aria-label="Aumentar">+</button>
+              </div>
+              <button type="button" class="cart-line__remove" data-cart-remove data-key="{{ item.key }}">{{ 'cart.remove' | t }}</button>
+            </div>
+          </div>
+        {%- endfor -%}
+      {%- endif -%}
+    </div>
+    {%- if cart.item_count > 0 -%}
+      <div class="cart-drawer__footer">
+        <div class="cart-drawer__subtotal">
+          <span>{{ 'cart.subtotal' | t }}</span>
+          <span data-cart-subtotal>{{ cart.total_price | money }}</span>
+        </div>
+        <p style="font-size:12px;color:var(--color-text);margin-bottom:14px;">{{ 'cart.shipping_note' | t }}</p>
+        <form action="/cart" method="post">
+          <button type="submit" name="checkout" class="button button--full">{{ 'cart.checkout' | t }}</button>
+        </form>
+      </div>
+    {%- endif -%}
+  </div>
+</div>

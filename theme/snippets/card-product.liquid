@@ -1,0 +1,40 @@
+{%- comment -%}
+  Renders a product card.
+  Accepts: product (object)
+{%- endcomment -%}
+<div class="card-product">
+  <a href="{{ product.url }}" class="card-product__media" aria-label="{{ product.title | escape }}">
+    {%- if product.featured_image -%}
+      <img
+        src="{{ product.featured_image | image_url: width: 600 }}"
+        alt="{{ product.featured_image.alt | default: product.title | escape }}"
+        loading="lazy"
+        width="600"
+        height="600"
+      >
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag }}
+    {%- endif -%}
+
+    {%- if product.images.size > 1 -%}
+      <img
+        class="card-product__image--back"
+        src="{{ product.images[1] | image_url: width: 600 }}"
+        alt=""
+        loading="lazy"
+        width="600"
+        height="600"
+      >
+    {%- endif -%}
+
+    {%- if product.compare_at_price > product.price -%}
+      <span class="card-product__badge">{{ 'products.product.sale_price' | t | default: 'Oferta' }}</span>
+    {%- elsif product.available == false -%}
+      <span class="card-product__badge">{{ 'products.product.sold_out' | t }}</span>
+    {%- endif -%}
+  </a>
+  <div class="card-product__info">
+    <p class="card-product__title">{{ product.title }}</p>
+    {%- render 'price', product: product -%}
+  </div>
+</div>

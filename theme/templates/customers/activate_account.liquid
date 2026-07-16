@@ -1,0 +1,17 @@
+<div class="page-width" style="max-width:420px;padding:60px 0;">
+  <h1 class="text-center">Ativar conta</h1>
+  {%- form 'activate_customer_password' -%}
+    {%- if form.errors -%}
+      <p style="color:#c00;">{{ form.errors | default_errors }}</p>
+    {%- endif -%}
+    <div class="field">
+      <label for="ActivatePassword">Senha</label>
+      <input type="password" name="customer[password]" id="ActivatePassword" required autocomplete="new-password">
+    </div>
+    <div class="field">
+      <label for="ActivatePasswordConfirm">Confirmar senha</label>
+      <input type="password" name="customer[password_confirmation]" id="ActivatePasswordConfirm" required autocomplete="new-password">
+    </div>
+    <button type="submit" class="button button--full">Ativar conta</button>
+  {%- endform -%}
+</div>

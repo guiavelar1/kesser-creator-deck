@@ -1,0 +1,97 @@
+<!doctype html>
+<html class="no-js" lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_background }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  {%- if settings.favicon != blank -%}
+    <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+  {%- endif -%}
+
+  {%- unless settings.type_header_font.system? -%}
+    <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+  {%- endunless -%}
+
+  <title>
+    {{ page_title }}
+    {%- if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | join: ", " }}{% endif -%}
+    {%- if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif -%}
+    {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
+  </title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  {%- render 'meta-tags' -%}
+
+  {{ content_for_header }}
+
+  {%- style -%}
+    {%- assign body_font = settings.type_body_font -%}
+    {%- assign header_font = settings.type_header_font -%}
+    {{ body_font | font_face: font_display: 'swap' }}
+    {%- unless header_font.family == body_font.family -%}
+      {{ header_font | font_face: font_display: 'swap' }}
+    {%- endunless -%}
+
+    :root {
+      --font-body-family: {{ body_font.family }}, {{ body_font.fallback_families }};
+      --font-body-style: {{ body_font.style }};
+      --font-body-weight: {{ body_font.weight }};
+      --font-heading-family: {{ header_font.family }}, {{ header_font.fallback_families }};
+      --font-heading-style: {{ header_font.style }};
+      --font-heading-weight: {{ header_font.weight }};
+
+      --color-background: {{ settings.color_background }};
+      --color-background-alt: {{ settings.color_background_alt }};
+      --color-text: {{ settings.color_text }};
+      --color-heading: {{ settings.color_heading }};
+      --color-accent: {{ settings.color_accent }};
+      --color-accent-2: {{ settings.color_accent_2 }};
+      --color-border: {{ settings.color_border }};
+      --color-button-background: {{ settings.color_button_background }};
+      --color-button-text: {{ settings.color_button_text }};
+
+      --page-width: {{ settings.page_width }}px;
+      --spacing-sections: {{ settings.spacing_sections }}px;
+
+      --radius-button: {{ settings.radius_button }}px;
+      --radius-card: {{ settings.radius_card }}px;
+      --radius-input: {{ settings.radius_input }}px;
+    }
+  {%- endstyle -%}
+
+  {{ 'base.css' | asset_url | stylesheet_tag }}
+
+  <script>
+    window.themeStrings = {
+      addToCart: {{ 'products.product.add_to_cart' | t | json }},
+      soldOut: {{ 'products.product.sold_out' | t | json }},
+      unavailable: {{ 'products.product.unavailable' | t | json }},
+      cartEmpty: {{ 'cart.empty' | t | json }},
+      continueShopping: {{ 'general.continue_shopping' | t | json }},
+      remove: {{ 'cart.remove' | t | json }}
+    };
+  </script>
+  <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+</head>
+<body class="template-{{ request.page_type | handleize }}">
+  <a class="skip-to-content" href="#MainContent">{{ 'accessibility.skip_to_text' | t | default: 'Pular para o conteúdo' }}</a>
+
+  {% section 'announcement-bar' %}
+  {% section 'header' %}
+
+  <main id="MainContent" class="content-for-layout" role="main">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+
+  <div id="cart-drawer-root">
+    {% render 'cart-drawer' %}
+  </div>
+</body>
+</html>

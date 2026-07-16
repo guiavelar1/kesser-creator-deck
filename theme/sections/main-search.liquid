@@ -1,0 +1,39 @@
+<div class="page-width">
+  <div class="collection-header">
+    <h1>{{ 'general.search.search' | t }}</h1>
+    <form action="{{ routes.search_url }}" method="get" role="search" style="max-width:480px;margin:20px auto 0;">
+      <input type="search" name="q" value="{{ search.terms | escape }}" placeholder="{{ 'general.search.placeholder' | t }}" aria-label="{{ 'general.search.search' | t }}">
+      <input type="hidden" name="type" value="product">
+    </form>
+  </div>
+
+  {%- paginate search.results by 24 -%}
+    {%- if search.performed -%}
+      <p class="text-center" style="margin:20px 0;">
+        {%- if search.results_count == 1 -%}
+          {{ 'general.search.results_count.one' | t: count: search.results_count }}
+        {%- else -%}
+          {{ 'general.search.results_count.other' | t: count: search.results_count }}
+        {%- endif -%}
+      </p>
+      {%- if search.results.size > 0 -%}
+        <div class="product-grid product-grid--4">
+          {%- for item in search.results -%}
+            {%- if item.object_type == 'product' -%}
+              {%- render 'card-product', product: item -%}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- else -%}
+        <p class="text-center">{{ 'general.search.no_results' | t: terms: search.terms }}</p>
+      {%- endif -%}
+    {%- endif -%}
+  {%- endpaginate -%}
+</div>
+
+{% schema %}
+{
+  "name": "Página de busca",
+  "settings": []
+}
+{% endschema %}

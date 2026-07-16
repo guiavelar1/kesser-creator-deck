@@ -1,0 +1,98 @@
+<div class="section{% if section.settings.background == 'alt' %} section--alt{% endif %}">
+  <div class="page-width">
+    <div class="image-with-text{% if section.settings.layout == 'reverse' %} image-with-text--reverse{% endif %}">
+      <div class="image-with-text__media">
+        {%- if section.settings.image -%}
+          <img
+            src="{{ section.settings.image | image_url: width: 900 }}"
+            alt="{{ section.settings.image.alt | escape }}"
+            loading="lazy"
+            width="900"
+            height="{{ 900 | divided_by: section.settings.image.aspect_ratio }}"
+          >
+        {%- else -%}
+          {{ 'lifestyle-2' | placeholder_svg_tag }}
+        {%- endif -%}
+      </div>
+      <div class="image-with-text__content">
+        {%- if section.settings.eyebrow != blank -%}
+          <span class="section-header__eyebrow">{{ section.settings.eyebrow }}</span>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <h2>{{ section.settings.heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.text != blank -%}
+          <div>{{ section.settings.text }}</div>
+        {%- endif -%}
+        {%- if section.settings.button_label != blank -%}
+          <p style="margin-top:20px;"><a href="{{ section.settings.button_link }}" class="button">{{ section.settings.button_label }}</a></p>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Imagem com texto",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Imagem"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Posição da imagem",
+      "options": [
+        { "value": "default", "label": "Esquerda" },
+        { "value": "reverse", "label": "Direita" }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Texto pequeno"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Título",
+      "default": "Um bálsamo, resultados múltiplos"
+    },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Texto",
+      "default": "<p>Hidrata, protege e prepara a pele para maquiagem em um único passo.</p>"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Texto do botão"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Link do botão"
+    },
+    {
+      "type": "select",
+      "id": "background",
+      "label": "Fundo",
+      "options": [
+        { "value": "default", "label": "Padrão" },
+        { "value": "alt", "label": "Alternativo" }
+      ],
+      "default": "default"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Imagem com texto"
+    }
+  ]
+}
+{% endschema %}

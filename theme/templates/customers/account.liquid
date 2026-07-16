@@ -1,0 +1,37 @@
+<div class="page-width" style="padding:60px 0;">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:32px;flex-wrap:wrap;gap:12px;">
+    <h1 style="margin:0;">{{ 'customer.account.title' | t }}</h1>
+    <div style="display:flex;gap:12px;">
+      <a href="{{ routes.account_addresses_url }}" class="button button--secondary button--small">{{ 'customer.account.view_addresses' | t }}</a>
+      <a href="{{ routes.account_logout_url }}" class="button button--small">{{ 'general.logout' | t | default: 'Sair' }}</a>
+    </div>
+  </div>
+
+  <h2 style="font-size:18px;">{{ 'customer.orders.title' | t }}</h2>
+  {%- if customer.orders.size > 0 -%}
+    <table class="cart-page-table">
+      <thead>
+        <tr>
+          <th>{{ 'customer.orders.order_number' | t }}</th>
+          <th>{{ 'customer.orders.date' | t }}</th>
+          <th>{{ 'customer.orders.payment_status' | t }}</th>
+          <th>{{ 'customer.orders.fulfillment_status' | t }}</th>
+          <th>{{ 'customer.orders.total' | t }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {%- for order in customer.orders -%}
+          <tr>
+            <td><a href="{{ order.customer_url }}">{{ order.name }}</a></td>
+            <td>{{ order.created_at | date: '%d/%m/%Y' }}</td>
+            <td>{{ order.financial_status_label }}</td>
+            <td>{{ order.fulfillment_status_label }}</td>
+            <td>{{ order.total_price | money }}</td>
+          </tr>
+        {%- endfor -%}
+      </tbody>
+    </table>
+  {%- else -%}
+    <p>{{ 'customer.orders.none' | t }}</p>
+  {%- endif -%}
+</div>

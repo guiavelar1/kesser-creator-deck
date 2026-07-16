@@ -1,0 +1,212 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Kesser",
+    "theme_version": "1.0.0",
+    "theme_author": "Kesser",
+    "theme_documentation_url": "",
+    "theme_support_url": ""
+  },
+  {
+    "name": "Cores",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Paleta"
+      },
+      {
+        "type": "color",
+        "id": "color_background",
+        "label": "Fundo",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_background_alt",
+        "label": "Fundo alternativo (seções)",
+        "default": "#F1F0ED"
+      },
+      {
+        "type": "color",
+        "id": "color_text",
+        "label": "Texto",
+        "default": "#67635E"
+      },
+      {
+        "type": "color",
+        "id": "color_heading",
+        "label": "Títulos",
+        "default": "#161616"
+      },
+      {
+        "type": "color",
+        "id": "color_accent",
+        "label": "Destaque (sálvia)",
+        "default": "#9AA89B"
+      },
+      {
+        "type": "color",
+        "id": "color_accent_2",
+        "label": "Destaque secundário (coral)",
+        "default": "#FF8A80"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Bordas",
+        "default": "#DCDBD6"
+      },
+      {
+        "type": "color",
+        "id": "color_button_background",
+        "label": "Fundo do botão primário",
+        "default": "#161616"
+      },
+      {
+        "type": "color",
+        "id": "color_button_text",
+        "label": "Texto do botão primário",
+        "default": "#FFFFFF"
+      }
+    ]
+  },
+  {
+    "name": "Tipografia",
+    "settings": [
+      {
+        "type": "font_picker",
+        "id": "type_header_font",
+        "label": "Fonte dos títulos",
+        "default": "arimo_n7"
+      },
+      {
+        "type": "font_picker",
+        "id": "type_body_font",
+        "label": "Fonte do corpo do texto",
+        "default": "arimo_n4"
+      }
+    ]
+  },
+  {
+    "name": "Layout",
+    "settings": [
+      {
+        "type": "range",
+        "id": "page_width",
+        "min": 1000,
+        "max": 1600,
+        "step": 20,
+        "default": 1400,
+        "unit": "px",
+        "label": "Largura máxima da página"
+      },
+      {
+        "type": "range",
+        "id": "spacing_sections",
+        "min": 0,
+        "max": 120,
+        "step": 4,
+        "unit": "px",
+        "label": "Espaçamento entre seções",
+        "default": 64
+      }
+    ]
+  },
+  {
+    "name": "Bordas arredondadas",
+    "settings": [
+      {
+        "type": "range",
+        "id": "radius_button",
+        "min": 0,
+        "max": 100,
+        "step": 2,
+        "unit": "px",
+        "label": "Botões",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "radius_card",
+        "min": 0,
+        "max": 48,
+        "step": 2,
+        "unit": "px",
+        "label": "Cards e imagens",
+        "default": 24
+      },
+      {
+        "type": "range",
+        "id": "radius_input",
+        "min": 0,
+        "max": 48,
+        "step": 2,
+        "unit": "px",
+        "label": "Campos de formulário",
+        "default": 100
+      }
+    ]
+  },
+  {
+    "name": "Marca",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "logo",
+        "label": "Logo"
+      },
+      {
+        "type": "range",
+        "id": "logo_width",
+        "min": 50,
+        "max": 300,
+        "step": 10,
+        "unit": "px",
+        "label": "Largura do logo",
+        "default": 130
+      },
+      {
+        "type": "text",
+        "id": "logo_wordmark",
+        "label": "Texto do logo (se não houver imagem)",
+        "default": "kesser"
+      }
+    ]
+  },
+  {
+    "name": "Redes sociais",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Links sociais"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram",
+        "default": "https://instagram.com/kesser"
+      },
+      {
+        "type": "text",
+        "id": "social_tiktok_link",
+        "label": "TikTok"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Imagem do favicon",
+        "info": "Será redimensionado para 32 x 32px"
+      }
+    ]
+  }
+]
